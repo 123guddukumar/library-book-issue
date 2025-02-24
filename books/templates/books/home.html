@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Library Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% load static %}
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Library</h1>
+            {% if user.is_authenticated %}
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </header>
+        
+        <section class="issue-form">
+            <div class="card">
+                <h2>Issue a Book</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="book_number" placeholder="Book Number" required>
+                    <input type="text" name="book_name" placeholder="Book Name" required>
+                    <input type="date" name="return_date" required>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="about-owner">
+            <div class="card">
+                <h2>About Library Owner</h2>
+                <div class="owner-content">
+                    <img src="{% static 'images/me.jpg' %}" alt="Library Owner" class="owner-image">
+                    <div class="owner-details">
+                        <h3>Guddu Kumar</h3>
+                        <p>
+                            Guddu Kumar is the passionate founder of our library, with over 10 years of 
+                            experience in promoting literacy and education. His vision is to create a 
+                            community space where knowledge is accessible to all. When not managing the 
+                            library, Guddu enjoys reading historical novels and mentoring young readers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
