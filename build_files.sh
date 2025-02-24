@@ -1,6 +1,8 @@
+#!/bin/bash
+
 echo "BUILD START"
 
-# Ensure Python is available
+# Ensure Python is installed
 which python3
 which pip3
 
